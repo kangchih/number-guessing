@@ -4,6 +4,7 @@ import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
 import BodyText from '../components/BodyText'
 import TitleText from '../components/TitleText'
+import Colors from '../constants/colors';
 
 
 const GameOverScreen = props => {
@@ -16,14 +17,20 @@ const GameOverScreen = props => {
                 <Image
                     // fadeDuration={1000}
                     // source={require('../assets/success.png')}
-                    source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ-zxunNTYtdoZCdobC4tzeAbFYFcKF1QFXlXzOLjx9iWYLoJcm' }}
+                    source={{ uri: 'https://cdn.pixabay.com/photo/2016/05/05/23/52/mountain-summit-1375015_1280.jpg' }}
 
                     style={styles.image}
                     resizeMode='cover'
                 />
             </View>
-            <Text >Number of rounds: {props.roundsNumber}</Text>
-            <Text >Number was: {props.userNumber}</Text>
+            <View style={styles.resultContainer}>
+                <BodyText style={styles.resultText}>
+                    Your phone needed{' '}
+                    <Text style={styles.highlight}>{props.userNumber}</Text> rounds to
+                    guess the number{' '}
+                    <Text style={styles.highlight}>{props.roundsNumber}</Text>.
+                </BodyText>
+            </View>
             <Button title="NEW GAME" onPress={props.onRestart} />
         </View>
     );
@@ -34,6 +41,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        // fontFamily:
     },
     imageContainer: {
         width: 300,
@@ -47,6 +55,20 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%',
+    },
+    highlight: {
+        color: Colors.primary,
+        fontFamily: 'open-sans-bold',
+    },
+    resultContainer: {
+        marginHorizontal: 30,
+        marginVertical: 15,
+
+        // height: '100%',
+    },
+    resultText: {
+        textAlign: 'center',
+        fontSize: 20
     }
 });
 
