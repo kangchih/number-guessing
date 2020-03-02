@@ -1,19 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, Button, Image } from 'react-native';
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
-
-
-// const generateRandomBetween = (min, max, exclude) => {
-//     min = Math.ceil(min);
-//     max = Math.floor(max);
-//     const rndNum = Math.floor(Math.random() * (max - min)) + min;
-//     if (rndNum === exclude) {
-//         return generateRandomBetween(min, max, exlude);
-//     } else {
-//         return rndNum;
-//     }
-// };
+import BodyText from '../components/BodyText'
+import TitleText from '../components/TitleText'
 
 
 const GameOverScreen = props => {
@@ -21,7 +11,14 @@ const GameOverScreen = props => {
 
     return (
         <View style={styles.screen}>
-            <Text >Game Over!</Text>
+            <TitleText >Game Over!</TitleText>
+            <View style={styles.imageContainer}>
+                <Image
+                    source={require('../assets/success.png')}
+                    style={styles.image}
+                    resizeMode='cover'
+                />
+            </View>
             <Text >Number of rounds: {props.roundsNumber}</Text>
             <Text >Number was: {props.userNumber}</Text>
             <Button title="NEW GAME" onPress={props.onRestart} />
@@ -35,6 +32,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    imageContainer: {
+        width: 300,
+        height: 300,
+        borderRadius: 200,
+        borderWidth: 3,
+        borderColor: 'black',
+        overflow: 'hidden',
+        marginVertical: 30
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+    }
 });
 
 export default GameOverScreen;
