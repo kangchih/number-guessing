@@ -5,7 +5,7 @@ import Card from '../components/Card';
 import BodyText from '../components/BodyText'
 import TitleText from '../components/TitleText'
 import Colors from '../constants/colors';
-
+import MainButton from '../components/MainButton'
 
 const GameOverScreen = props => {
     // const [enteredValue, setEnteredValue] = useState('');
@@ -31,7 +31,7 @@ const GameOverScreen = props => {
                     <Text style={styles.highlight}>{props.roundsNumber}</Text>.
                 </BodyText>
             </View>
-            <Button title="NEW GAME" onPress={props.onRestart} />
+            <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
         </View>
     );
 };
