@@ -32,6 +32,7 @@ const GameOverScreen = props => {
                         <Text style={styles.highlight}>{props.roundsNumber}</Text>.
                 </BodyText>
                 </View>
+
                 <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
             </View>
         </ScrollView>
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        paddingVertical: 10
         // fontFamily:
     },
     imageContainer: {
