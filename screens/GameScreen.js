@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, Alert, ScrollView, FlatList, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert, FlatList, Dimensions } from 'react-native';
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
 import MainButton from '../components/MainButton';
 import BodyText from '../components/BodyText';
 import DefaultStyles from '../constants/default-styles'
 import { Ionicons } from '@expo/vector-icons';
+import { ScreenOrientation } from 'expo';
 
 const generateRandomBetween = (min, max, exclude) => {
     min = Math.ceil(min);
@@ -26,8 +27,8 @@ const renderListItem = (listLength, itemData) => (
 );
 
 const GameScreen = props => {
+    // ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     const initialGuess = generateRandomBetween(1, 100, props.userChoice);
-
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
     // const [enteredValue, setEnteredValue] = useState('');
     // const [currentGuess, setCurrentGuess] = useState(generateRandomBetween(1, 100, props.userChoice));
@@ -47,9 +48,9 @@ const GameScreen = props => {
             setAvailableDeviceWidth(Dimensions.get('window').width);
             setAvailableDeviceHeight(Dimensions.get('window').height);
         };
-     
+
         Dimensions.addEventListener('change', updateLayout);
-        return() => {
+        return () => {
             Dimensions.removeEventListener('change', updateLayout);
         };
     });
@@ -86,7 +87,7 @@ const GameScreen = props => {
     };
 
     let listContainerStyle = styles.listContainer;
-    
+
     if (availableDeviceWidth < 350) {
         listContainerStyle = styles.listContainerBig;
     }
@@ -105,7 +106,7 @@ const GameScreen = props => {
             </Card>
         </React.Fragment>
     );
-     
+
     if (availableDeviceHeight < 500) {
         gameControls =  (
             <View style={styles.controls}>
@@ -119,7 +120,7 @@ const GameScreen = props => {
             </View>
         );
     }
-     
+
     return (
         <View style={styles.screen}>
           <Text style={DefaultStyles.title}>Opponent's Guess</Text>
@@ -137,7 +138,7 @@ const GameScreen = props => {
           </View>
         </View>
     );
-    
+
     // if (availableDeviceHeight < 500) {
     //     return (
     //         <View style={styles.screen}>
@@ -167,12 +168,11 @@ const GameScreen = props => {
     //     );
     // }
 
-
     // return (
     //     <View style={styles.screen}>
     //         <Text style={DefaultStyles.title} >Opponent's Guess</Text>
     //         <NumberContainer>{currentGuess}</NumberContainer>
-    //         <Card style={[...styles.buttonContainer, {marginTop: availableHeight > 600 ? 20 : 5}]}>
+    //         <Card style={[...styles.buttonContainer, { marginTop: availableHeight > 600 ? 20 : 5 }]}>
     //             <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>
     //                 <Ionicons name="md-remove" size={24} color="white" />
     //             </MainButton>
